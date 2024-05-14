@@ -8,77 +8,50 @@ using UnityEngine.UIElements;
 
 public class BallMovement : MonoBehaviour
 {
-    public Rigidbody2D ball;
-    public TextMeshProUGUI infoText;
-    private bool infoDisplayed = true; 
-    public float initialSpeed;
-    public float maxSpeed;
-    private bool gameRunning = false;
-    private bool gameCanStart = true;
-    private bool gameEnded = false;
-    public bool GameRunning { get => gameRunning; set => gameRunning = value; }
-    public bool GameEnded { get => gameEnded; set => gameEnded = value; }
+    public Rigidbody2D Ball;
+    public float InitialSpeed;
+    public float MaxSpeed;
 
-    PlayerMovement playerScript;
-    Scoring scoreScript;
-
+    private float minSpeed = 0.25f;
+    private GameManager gameManager;
+    // Start is called before the first frame update
     void Start(){
-        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        scoreScript = GameObject.FindGameObjectWithTag("Score").GetComponent<Scoring>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
-
 
     // Update is called once per frame
     void Update()
     {
-
-        if (gameCanStart && Input.GetKeyUp(KeyCode.Space)){
-            gameCanStart = false;
-            if (infoDisplayed){
-                infoDisplayed = false;
-                infoText.enabled = false;
-            }
-            gameRunning = true;
-            ball.velocity = Vector2.up * initialSpeed;
-        }
-
-        if (!gameRunning && Input.GetKeyUp(KeyCode.Space)){
-            playerScript.ResetPaddlePositions();
-            ball.position = Vector2.zero;
-            gameCanStart = true;
-            if (gameEnded){
-                gameEnded = false;
-                scoreScript.winnerInfo.SetText("");
-                scoreScript.leftText.SetText("0");
-                scoreScript.rightText.SetText("0");
-                scoreScript.ResetPoints();
-            }
-        }
-
-
-        if (gameRunning && Math.Sqrt(Math.Pow(ball.velocity.x, 2) + Math.Pow(ball.velocity.y, 2)) > maxSpeed){
-            ball.velocity = ball.velocity.normalized * maxSpeed;
-        }
-
-
-        // Assign a new velocity if x velocity has deminished
-        if (gameRunning && Math.Abs(ball.velocity.x) < 0.25){
-            float currentVelocity = Math.Abs(ball.velocity.y);
-            Vector2 newVelocity = new(0, 0);
-
-            float velocityX = UnityEngine.Random.Range(0, currentVelocity);
-            if (velocityX < currentVelocity / 2){
-                velocityX = UnityEngine.Random.Range(-currentVelocity, -currentVelocity / 2);
+        if (gameManager.GameRunning){
+            if (Math.Sqrt(Math.Pow(Ball.velocity.x, 2) + Math.Pow(Ball.velocity.y, 2)) > MaxSpeed){
+            Ball.velocity = Ball.velocity.normalized * MaxSpeed;
             }
 
-            // if (currentVelocity > maxSpeed / 2 && velocityX > currentVelocity / 2){
-            //     velocityX = UnityEngine.Random.Range(-currentVelocity / 2, 2);
-            // } else if (currentVelocity < maxSpeed / 2 && velocityX < currentVelocity / 2){
-            //     velocityX = UnityEngine.Random.Range(-currentVelocity, -currentVelocity / 2);
-            // }
+            // Assign a new velocity if x velocity has deminished
+            if (Math.Abs(Ball.velocity.x) < minSpeed){
+                Vector2 newVelocity = new(0, 0);
+                float curVelocity = Math.Abs(Ball.velocity.y);
 
-            newVelocity.Set(velocityX, (float)Math.Sqrt(Math.Pow(currentVelocity, 2) - Math.Pow(velocityX, 2)));
-            ball.velocity = newVelocity;
-        }
+                float xVelocity = UnityEngine.Random.Range(0, curVelocity);
+                if (xVelocity < curVelocity / 2){
+                    xVelocity = UnityEngine.Random.Range(-curVelocity, -curVelocity / 2);
+                }
+
+                newVelocity.Set(xVelocity, (float)Math.Sqrt(Math.Pow(curVelocity, 2) - Math.Pow(xVelocity, 2)));
+                Ball.velocity = newVelocity;
+            }
+        }   
+    }
+
+    public void SetVelocity(){
+        Ball.velocity = Vector2.up * InitialSpeed;
+    }
+
+    public void ResetVelocity(){
+        Ball.velocity = Vector2.zero;
+    }
+
+    public void ResetPosition(){
+        Ball.position = Vector2.zero;
     }
 }

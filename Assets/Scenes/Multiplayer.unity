@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 18693409}
   - component: {fileID: 18693408}
   m_Layer: 0
-  m_Name: LeftGoal
+  m_Name: Left Scoring Zone
   m_TagString: Score
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 83556853}
   - component: {fileID: 83556852}
   m_Layer: 0
-  m_Name: RightPaddle
+  m_Name: Right Paddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 555981603}
   - component: {fileID: 555981605}
   m_Layer: 0
-  m_Name: LeftPaddle
+  m_Name: Left Paddle
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1338,6 +1338,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289571971}
   m_CullTransparentMesh: 1
+--- !u!1 &1356697505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1356697507}
+  - component: {fileID: 1356697506}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1356697506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356697505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecb62b03997668544a5d49e6d0438ae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1356697507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356697505}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1572093271
 GameObject:
   m_ObjectHideFlags: 0
@@ -1350,7 +1394,7 @@ GameObject:
   - component: {fileID: 1572093273}
   - component: {fileID: 1572093272}
   m_Layer: 0
-  m_Name: LowerWall
+  m_Name: Lower Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1683,7 +1727,7 @@ GameObject:
   - component: {fileID: 1695281526}
   - component: {fileID: 1695281527}
   m_Layer: 0
-  m_Name: RightGoal
+  m_Name: Right Scoring Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1963,7 +2007,7 @@ GameObject:
   - component: {fileID: 1818314273}
   - component: {fileID: 1818314275}
   m_Layer: 0
-  m_Name: UpperWall
+  m_Name: Upper Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2096,3 +2140,4 @@ SceneRoots:
   - {fileID: 1695281524}
   - {fileID: 270253469}
   - {fileID: 1657322229}
+  - {fileID: 1356697507}
