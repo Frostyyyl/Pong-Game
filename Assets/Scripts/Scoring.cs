@@ -13,6 +13,7 @@ public class Scoring : MonoBehaviour
     public int pointsToWin = 3;
     public TextMeshProUGUI leftText;
     public TextMeshProUGUI rightText;
+    public TextMeshProUGUI winnerInfo;
     private int leftPoints;
     private int rightPoints;
 
@@ -27,19 +28,31 @@ public class Scoring : MonoBehaviour
             ballScript.GameRunning = false;
             ballScript.ball.velocity = Vector2.zero;
             playerScript.ResetPaddleVelocities();
+
             if (gameObject.name == "LeftGoal"){
                 rightPoints += 1;
+                Debug.Log("Red " + rightPoints);
                 rightText.SetText(rightPoints.ToString());
+                
                 if (rightPoints == pointsToWin){
-                    Debug.Log("Right Won!");
+                    winnerInfo.SetText("Red Won!");
+                    ballScript.GameEnded = true;
                 }
-            } else {
+            } else if (gameObject.name == "RightGoal"){
                 leftPoints += 1;
+                Debug.Log("Blue " + leftPoints);
                 leftText.SetText(leftPoints.ToString());
+                
                 if (leftPoints == pointsToWin){
-                    Debug.Log("Left Won!");
+                    winnerInfo.SetText("Blue Won!");
+                    ballScript.GameEnded = true;
                 }
             }
         }
+    }
+
+    public void ResetPoints(){
+        leftPoints = 0;
+        rightPoints = 0;
     }
 }

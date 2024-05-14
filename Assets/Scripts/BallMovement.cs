@@ -2,22 +2,29 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class BallMovement : MonoBehaviour
 {
     public Rigidbody2D ball;
+    public TextMeshProUGUI infoText;
+    private bool infoDisplayed = true; 
     public float initialSpeed;
     public float maxSpeed;
     private bool gameRunning = false;
     private bool gameCanStart = true;
+    private bool gameEnded = false;
     public bool GameRunning { get => gameRunning; set => gameRunning = value; }
+    public bool GameEnded { get => gameEnded; set => gameEnded = value; }
 
     PlayerMovement playerScript;
+    Scoring scoreScript;
 
     void Start(){
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        scoreScript = GameObject.FindGameObjectWithTag("Score").GetComponent<Scoring>();
     }
 
 
@@ -27,6 +34,10 @@ public class BallMovement : MonoBehaviour
 
         if (gameCanStart && Input.GetKeyUp(KeyCode.Space)){
             gameCanStart = false;
+            if (infoDisplayed){
+                infoDisplayed = false;
+                infoText.enabled = false;
+            }
             gameRunning = true;
             ball.velocity = Vector2.up * initialSpeed;
         }
@@ -35,6 +46,13 @@ public class BallMovement : MonoBehaviour
             playerScript.ResetPaddlePositions();
             ball.position = Vector2.zero;
             gameCanStart = true;
+            if (gameEnded){
+                gameEnded = false;
+                scoreScript.winnerInfo.SetText("");
+                scoreScript.leftText.SetText("0");
+                scoreScript.rightText.SetText("0");
+                scoreScript.ResetPoints();
+            }
         }
 
 
