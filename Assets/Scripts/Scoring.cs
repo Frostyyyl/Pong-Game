@@ -11,6 +11,8 @@ public class Scoring : MonoBehaviour
     PlayerMovement playerScript;
 
     public int pointsToWin = 3;
+    public TextMeshProUGUI leftText;
+    public TextMeshProUGUI rightText;
     private int leftPoints;
     private int rightPoints;
 
@@ -27,11 +29,13 @@ public class Scoring : MonoBehaviour
             playerScript.ResetPaddleVelocities();
             if (gameObject.name == "LeftGoal"){
                 rightPoints += 1;
+                rightText.SetText(rightPoints.ToString());
                 if (rightPoints == pointsToWin){
                     Debug.Log("Right Won!");
                 }
             } else {
                 leftPoints += 1;
+                leftText.SetText(leftPoints.ToString());
                 if (leftPoints == pointsToWin){
                     Debug.Log("Left Won!");
                 }
