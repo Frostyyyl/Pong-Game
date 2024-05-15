@@ -134,10 +134,10 @@ GameObject:
   - component: {fileID: 18693407}
   - component: {fileID: 18693406}
   - component: {fileID: 18693409}
-  - component: {fileID: 18693408}
+  - component: {fileID: 18693410}
   m_Layer: 0
   m_Name: Left Scoring Zone
-  m_TagString: Score
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,22 +209,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &18693408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18693405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce1df6aba8aa6f94ab131a86366b48b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointsToWin: 3
-  leftText: {fileID: 1289571973}
-  rightText: {fileID: 1732847099}
-  winnerInfo: {fileID: 1687842899}
 --- !u!61 &18693409
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -270,6 +254,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &18693410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18693405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a657acfdf09625e429c3ce65b2510259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &83556850
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,9 +278,10 @@ GameObject:
   - component: {fileID: 83556854}
   - component: {fileID: 83556853}
   - component: {fileID: 83556852}
+  - component: {fileID: 83556856}
   m_Layer: 0
   m_Name: Right Paddle
-  m_TagString: Untagged
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -428,6 +425,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &83556856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83556850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6529b7b37b8a8124ba3808976d6422a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 3
+  RedPaddle: {fileID: 83556852}
 --- !u!1 &173658235
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,7 +735,7 @@ GameObject:
   - component: {fileID: 555981605}
   m_Layer: 0
   m_Name: Left Paddle
-  m_TagString: Player
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -880,9 +891,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f92742c25e8e74eaabfdc7f8b9b036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftPaddle: {fileID: 555981603}
-  rightPaddle: {fileID: 83556852}
-  speed: 3
+  Speed: 3
+  BluePaddle: {fileID: 555981603}
 --- !u!1 &1091424675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,10 +1175,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0678f19947898914b94f3dc4e706d27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 1113138585}
-  infoText: {fileID: 1091424678}
-  initialSpeed: 6
-  maxSpeed: 16
+  Ball: {fileID: 1113138585}
+  InitialSpeed: 6
+  MaxSpeed: 16
 --- !u!58 &1113138590
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1350,7 +1359,7 @@ GameObject:
   - component: {fileID: 1356697506}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1367,6 +1376,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb62b03997668544a5d49e6d0438ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textInfo: {fileID: 1091424678}
+  winnerInfo: {fileID: 1687842899}
+  bluePoints: {fileID: 1289571973}
+  redPoints: {fileID: 1732847099}
+  WinningScore: 3
 --- !u!4 &1356697507
 Transform:
   m_ObjectHideFlags: 0
@@ -1854,13 +1868,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1695281522}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce1df6aba8aa6f94ab131a86366b48b8, type: 3}
+  m_Script: {fileID: 11500000, guid: dfa5aeaa91f2de743bf0b5c17212f459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsToWin: 3
-  leftText: {fileID: 1289571973}
-  rightText: {fileID: 1732847099}
-  winnerInfo: {fileID: 1687842899}
 --- !u!1 &1732847097
 GameObject:
   m_ObjectHideFlags: 0

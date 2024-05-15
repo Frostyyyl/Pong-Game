@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Mathematics;
 using TMPro;
 using UnityEngine;
@@ -23,21 +20,21 @@ public class BallMovement : MonoBehaviour
     void Update()
     {
         if (gameManager.GameRunning){
-            if (Math.Sqrt(Math.Pow(Ball.velocity.x, 2) + Math.Pow(Ball.velocity.y, 2)) > MaxSpeed){
+            if (Mathf.Sqrt(Mathf.Pow(Ball.velocity.x, 2) + Mathf.Pow(Ball.velocity.y, 2)) > MaxSpeed){
             Ball.velocity = Ball.velocity.normalized * MaxSpeed;
             }
 
             // Assign a new velocity if x velocity has deminished
-            if (Math.Abs(Ball.velocity.x) < minSpeed){
+            if (Mathf.Abs(Ball.velocity.x) < minSpeed){
                 Vector2 newVelocity = new(0, 0);
-                float curVelocity = Math.Abs(Ball.velocity.y);
+                float curVelocity = Mathf.Abs(Ball.velocity.y);
 
                 float xVelocity = UnityEngine.Random.Range(0, curVelocity);
                 if (xVelocity < curVelocity / 2){
                     xVelocity = UnityEngine.Random.Range(-curVelocity, -curVelocity / 2);
                 }
 
-                newVelocity.Set(xVelocity, (float)Math.Sqrt(Math.Pow(curVelocity, 2) - Math.Pow(xVelocity, 2)));
+                newVelocity.Set(xVelocity, (float)Mathf.Sqrt(Mathf.Pow(curVelocity, 2) - Mathf.Pow(xVelocity, 2)));
                 Ball.velocity = newVelocity;
             }
         }   

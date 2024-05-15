@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,6 +33,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Escape)){
+            SceneManager.LoadScene(0);
+        }
+
         if (gameReady && Input.GetKeyUp(KeyCode.Space)){
             gameReady = false;
             if (textDisplayed){
