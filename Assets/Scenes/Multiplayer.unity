@@ -437,7 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6529b7b37b8a8124ba3808976d6422a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3
+  Speed: 16
   RedPaddle: {fileID: 83556852}
 --- !u!1 &173658235
 GameObject:
@@ -891,7 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f92742c25e8e74eaabfdc7f8b9b036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3
+  Speed: 16
   BluePaddle: {fileID: 555981603}
 --- !u!1 &1091424675
 GameObject:
