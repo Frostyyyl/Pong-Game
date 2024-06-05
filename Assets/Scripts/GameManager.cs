@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         redScore += 1;
         redPoints.SetText(redScore.ToString());
         if (redScore == WinningScore){
-            winnerInfo.SetText("Red Won!");
+            winnerInfo.SetText("Purple Won!");
             gameEnded = true;
         }
     }
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
         blueScore += 1;
         bluePoints.SetText(blueScore.ToString());
         if (blueScore == WinningScore){
-            winnerInfo.SetText("Blue Won!");
+            winnerInfo.SetText("Pink Won!");
             gameEnded = true;
         }
     }
