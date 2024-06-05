@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI redPoints;
     public int WinningScore;
 
+    public AudioSource pointSound;
+
     private BluePlayer bluePlayer;
     private RedPlayer redPlayer;
     private BallMovement ballMovement;
@@ -75,6 +77,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void RedScores(){
+		pointSound.Play();
         StopGame();
         redScore += 1;
         redPoints.SetText(redScore.ToString());
@@ -85,6 +88,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void BlueScores(){
+        pointSound.Play();
         StopGame();
         blueScore += 1;
         bluePoints.SetText(blueScore.ToString());
